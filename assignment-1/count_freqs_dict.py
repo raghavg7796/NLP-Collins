@@ -16,7 +16,7 @@ def count():
 		if(tup[1] == 'WORDTAG'):
 			tempcnt = int(tup[0])
 			tag = tup[2]
-			word = tup[3].lower()
+			word = tup[3]
 			if word+' '+tag in count_wordtags: 
 				count_wordtags[word+' '+tag] = count_wordtags[word+' '+tag] + tempcnt
 			else:

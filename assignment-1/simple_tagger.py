@@ -10,7 +10,8 @@ def emission_prob(x, y):
 	if key in count_wordtags:
 		return count_wordtags[x+' '+y]/count_unigrams[y]
 	else:
-		return 0 
+		x = '_RARE_'
+		return count_wordtags[x+' '+y]/count_unigrams[y]
 
 def find_tag(x):
 	if(x not in count_words or count_words[x] <= 5):
@@ -33,7 +34,7 @@ def main():
 		if not word:
 			out.write('\n')
 		else:
-			tag = find_tag(word.lower())
+			tag = find_tag(word)
 			out.write(word+' '+tag+'\n')
 		line = inp.readline()
 	inp.close()
