@@ -1,5 +1,6 @@
 import sys
 from shutil import copyfile
+import pickle
 
 count_wordtags = dict()
 count_unigrams = dict()
@@ -46,6 +47,4 @@ def count():
 		line = count_file.readline()
 
 count()
- 
-for i in count_wordtags:
-	print(i, count_wordtags[i])
+pickle.dump([count_wordtags, count_unigrams, count_bigrams, count_trigrams], open('counts.p', 'wb'))
