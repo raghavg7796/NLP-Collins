@@ -1,2 +1,2 @@
 # NLP-Collins
-Assignments
+Assignments of Prof. Collin's NLP Course.
