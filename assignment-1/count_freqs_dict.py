@@ -2,6 +2,7 @@ import sys
 from shutil import copyfile
 import pickle
 
+count_words = dict()
 count_wordtags = dict()
 count_unigrams = dict()
 count_bigrams = dict()
@@ -15,11 +16,15 @@ def count():
 		if(tup[1] == 'WORDTAG'):
 			tempcnt = int(tup[0])
 			tag = tup[2]
-			word = tup[3]
+			word = tup[3].lower()
 			if word+' '+tag in count_wordtags: 
 				count_wordtags[word+' '+tag] = count_wordtags[word+' '+tag] + tempcnt
 			else:
 				count_wordtags[word+' '+tag] = tempcnt
+			if word in count_words:
+				count_words[word] = count_words[word] + tempcnt
+			else:
+				count_words[word] = tempcnt
 		elif(tup[1] == '1-GRAM'):
 			tempcnt = int(tup[0])
 			tag = tup[2]
@@ -47,4 +52,4 @@ def count():
 		line = count_file.readline()
 
 count()
-pickle.dump([count_wordtags, count_unigrams, count_bigrams, count_trigrams], open('counts.p', 'wb'))
+pickle.dump([count_words, count_wordtags, count_unigrams, count_bigrams, count_trigrams], open('counts.p', 'wb'))
