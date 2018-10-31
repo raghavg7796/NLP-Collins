@@ -29,10 +29,10 @@ def simple_conll_corpus_iterator(corpus_file):
             ne_tag = fields[-1]
             #phrase_tag = fields[-2] #Unused
             #pos_tag = fields[-3] #Unused
-            word = " ".join(fields[:-1])
+            word = " ".join( fields[:-1] )
             yield word, ne_tag
         else: # Empty line
-            yield (None, None)                        
+            yield (None, None )                        
         l = corpus_file.readline()
 
 def sentence_iterator(corpus_iterator):
@@ -52,7 +52,8 @@ def sentence_iterator(corpus_iterator):
             else:
                 current_sentence.append(l) #Add token to the buffer
 
-    if current_sentence: # If the last line was blank, we're done
+    if current_sentence:
+        # If the last line was blank, we're done
         yield current_sentence  #Otherwise when there is no more token
                                 # in the stream return the last sentence.
 
@@ -66,7 +67,7 @@ def get_ngrams(sent_iterator, n):
     for sent in sent_iterator:
          #Add boundary symbols to the sentence
          w_boundary = (n-1) * [(None, "*")]
-         w_boundary.extend(sent)
+         w_boundary.extend( sent )
          w_boundary.append((None, "STOP"))
          #Then extract n-grams
          ngrams = (tuple(w_boundary[i:i+n]) for i in range(len(w_boundary)-n+1))
