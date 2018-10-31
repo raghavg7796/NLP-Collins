@@ -7,8 +7,8 @@ from collections import defaultdict
 Evaluate a set of test parses versus the gold set. 
 """
 
-class ParseError(Exception):
-  def __init__(self, value):
+class ParseError( Exception ):
+  def __init__( self, value ):
     self.value = value
     
   def __str__(self):
